@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Accueil
+{% endblock %}
+
+{% block body %}
+    <div class="card col-md-12" xmlns="http://www.w3.org/1999/html">
+		<div class="card-header">
+			<h3>
+				<i class="fas fa-home"></i>
+				 Boutique R4.01 -
+                <span class="text-primary">
+                    {# on insere la dateActuelle en la faisant passer par 2 filtres successifs #}
+                    {{ dateActuelle | format_datetime(locale='fr',pattern="EEEE dd MMMM YYYY - HH:mm") | capitalize }}
+                </span>
+			</h3>
+		</div>
+		<div class="card-body">
+			<div class="card clickable" onclick="location = '{# TODO - Utiliser ici le helper 'path' #}'">
+
+                {# Pour fabriquer l'URL d'une ressource du répertoire public, on utilise le helper 'asset' #}
+				<img src="{{ asset("images/epicerie.jpg") }}" class="card-img-top" alt="Logo Boutique"/>
+
+				<div class="card-body">
+					<p class="card-text">
+						<i>Ici rien à vendre, c'est juste pour apprendre...</i>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
