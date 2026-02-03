@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Boutique{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+    <div class="card col-md-12">
+        <div class="card-header">
+            <a class="btn-back text-secondary" href="/info/R401/">
+                <i class="fas fa-2x fa-arrow-circle-left"></i>
+            </a>
+            <h3>
+                <i class="fas fa-store"></i>
+                Boutique
+                <span class="badge badge-pill badge-info">04</span>
+                rayon(s) proposé(s)
+            </h3>
+        </div>
+        <div class="card-body row">
+            <div class="col-md-3">
+                <div class="card clickable" onclick="location = '/info/R401/fr/boutique/rayon/1'">
+                    <img src="/public/images/categories/fruits.jpg" class="card-img-top" alt="Fruits">
+                    <div class="card-body">
+                        <h4 class="card-title">Fruits</h4>
+                        <p class="card-text">
+                            <i>De la passion ou de ton imagination</i>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card clickable" onclick="location = '/info/R401/fr/boutique/rayon/2'">
+                    <img src="/public/images/categories/legumes.jpg" class="card-img-top" alt="Légumes">
+                    <div class="card-body">
+                        <h4 class="card-title">Légumes</h4>
+                        <p class="card-text">
+                            <i>Plus tu en manges, moins tu en es un</i>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card clickable" onclick="location = '/info/R401/fr/boutique/rayon/3'">
+                    <img src="/public/images/categories/junk_food.jpg" class="card-img-top" alt="Junk Food">
+                    <div class="card-body">
+                        <h4 class="card-title">Junk Food</h4>
+                        <p class="card-text">
+                            <i>Chère et cancérogène, tu es prévenu(e)</i>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card clickable" onclick="location = '/info/R401/fr/boutique/rayon/4'">
+                    <img src="/public/images/categories/corona.jpg" class="card-img-top" alt="Virus">
+                    <div class="card-body">
+                        <h4 class="card-title">Virus</h4>
+                        <p class="card-text">
+                            <i>Une opportunité, il faut en profiter</i>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
