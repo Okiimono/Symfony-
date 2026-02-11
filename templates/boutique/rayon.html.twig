@@ -1,145 +1,46 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Boutique{% endblock %}
+{% block title %}{% trans %}boutique.rayon.titre{% endtrans %} {{ categorie.libelle }}{% endblock %}
 
 {% block body %}
-    <style>
-        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-    </style>
-
-    <main role="main" class="container-fluid">
-        <div class="row">
-            <div class="col-md-10">
-                <div class="main-div">
-                    <!-- debut du block body -->
-                    <!-- debut du block body -->
-                    <div class="card col-md-12">
-                        <div class="card-header">
-                            <a class="btn-back text-secondary" href="boutique/">
-                                <i class="fas fa-2x fa-arrow-circle-left"></i>
-                            </a>
-                            <h3>
-                                <i class="fas fa-store"></i>
-                                Rayon <b>Fruits</b>
-                                <span class="badge badge-pill badge-info">03</span>
-                                produit(s) disponible(s)
-                            </h3>
-                        </div>
-                        <div class="card-body row">
-                            <div class="col-md-4">
-                                <div class="card clickable" onclick="location = '{#/rayon/ajouter/1 #}'" data-toggle="tooltip" title="" data-placement="bottom" data-html="true" data-container="body" data-original-title="Ajouter &lt;b&gt;Pomme&lt;/b&gt; à mon panier">
-                                    <img src="/info/R401/images/produits/pommes.jpg " class="card-img-produit" alt="Pomme">
-                                    <div class="card-body">
-                                        <h4 class="card-title">Pomme</h4>
-                                        <p class="card-text">
-                                            <i>Elle est bonne pour la tienne</i>
-                                        </p>
-                                        <h2>
-				<span class="badge badge-primary">
-					<i class="fas fa-cart-plus"></i>&nbsp;&nbsp;
-					3,42&nbsp;€
-				</span>
-                                        </h2>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="card clickable" onclick="location = '/info/R401/fr/panier/ajouter/2'" data-toggle="tooltip" title="" data-placement="bottom" data-html="true" data-container="body" data-original-title="Ajouter &lt;b&gt;Poire&lt;/b&gt; à mon panier">
-                                    <img src="/info/R401/images/produits/poires.jpg " class="card-img-produit" alt="Poire">
-                                    <div class="card-body">
-                                        <h4 class="card-title">Poire</h4>
-                                        <p class="card-text">
-                                            <i>Ici tu n'en es pas une</i>
-                                        </p>
-                                        <h2>
-				<span class="badge badge-primary">
-					<i class="fas fa-cart-plus"></i>&nbsp;&nbsp;
-					2,11&nbsp;€
-				</span>
-                                        </h2>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="card clickable" onclick="location = '/info/R401/fr/panier/ajouter/3'" data-toggle="tooltip" title="" data-placement="bottom" data-html="true" data-container="body" data-original-title="Ajouter &lt;b&gt;Pêche&lt;/b&gt; à mon panier">
-                                    <img src="/info/R401/images/produits/peche.jpg " class="card-img-produit" alt="Pêche">
-                                    <div class="card-body">
-                                        <h4 class="card-title">Pêche</h4>
-                                        <p class="card-text">
-                                            <i>Elle va te la donner</i>
-                                        </p>
-                                        <h2>
-				<span class="badge badge-primary">
-					<i class="fas fa-cart-plus"></i>&nbsp;&nbsp;
-					2,84&nbsp;€
-				</span>
-                                        </h2>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- fin du block body -->
-                </div>
-            </div>
-            <!-- Debut de la sidebar "plus vendus" -->
-            <div class="col-md-2" style="padding: 10px;">
-                <div class="card">
-                    <div class="card-header text-center">
-                        <h5>
-                            <i class="fas fa-star"></i>
-                            Top Ventes								<i class="fas fa-star"></i>
-                        </h5>
-                    </div>
-                    <div class="card-body text-muted text-center">
-                        <ul class="list-group">
-                            <a href="/info/R401/fr/boutique/rayon/1">
-                                <li class="list-group-item text-center clickable top-produit">
-                                    <img src="/info/R401/images/produits/pommes.jpg" style="height: 40px;">
-                                    <p class="top-produit">Pomme<br><i>10
-                                            vente(s)</i>
-                                    </p>
-                                </li>
-                            </a>
-                            <a href="/info/R401/fr/boutique/rayon/2">
-                                <li class="list-group-item text-center clickable top-produit">
-                                    <img src="/info/R401/images/produits/romanesco.jpg" style="height: 40px;">
-                                    <p class="top-produit">Chou Romanesco<br><i>5
-                                            vente(s)</i>
-                                    </p>
-                                </li>
-                            </a>
-                            <a href="/info/R401/fr/boutique/rayon/3">
-                                <li class="list-group-item text-center clickable top-produit">
-                                    <img src="/info/R401/images/produits/pizza.jpg" style="height: 40px;">
-                                    <p class="top-produit">Pizza<br><i>2
-                                            vente(s)</i>
-                                    </p>
-                                </li>
-                            </a>
-                            <a href="/info/R401/fr/boutique/rayon/4">
-                                <li class="list-group-item text-center clickable top-produit">
-                                    <img src="/info/R401/images/produits/gel.jpg" style="height: 40px;">
-                                    <p class="top-produit">Gel Hydroalcoolique<br><i>1
-                                            vente(s)</i>
-                                    </p>
-                                </li>
-                            </a>
-                            <a href="/info/R401/fr/boutique/rayon/4">
-                                <li class="list-group-item text-center clickable top-produit">
-                                    <img src="/info/R401/images/produits/masque.jpg" style="height: 40px;">
-                                    <p class="top-produit">Masque FFP 200<br><i>1
-                                            vente(s)</i>
-                                    </p>
-                                </li>
-                            </a>
-                        </ul>
-
-                    </div>
-                </div>
-            </div>
-            <!-- Fin de la sidebar "plus vendus" -->
+    <div class="card col-md-12">
+        <div class="card-header">
+            <h3>
+                <a href="{{ path('app_boutique_index') }}" class="text-white text-decoration-none mr-2">
+                    <i class="fas fa-arrow-circle-left"></i>
+                </a>
+                <i class="fas fa-store"></i>
+                {% trans %}boutique.rayon.titre{% endtrans %} : {{ categorie.libelle }}
+                <span class="badge badge-pill badge-info">{{ produits|length }}</span>
+            </h3>
         </div>
-    </main>
+        <div class="card-body row">
+                {% for produit in produits %}
+                    <div class="card clickable">
+                        <a  href="{{ path('app_default_index', {idCategorie: categorie.id}) }}" class="text-decoration-none text-dark">
+                            <div class="card h-100">
+                                <img src="{{ asset(produit.visuel) }}" class="card-img-top" alt="{{ produit.libelle }}">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ produit.libelle }}</h5>
+                                    <p class="card-text">{{ produit.texte }}</p>
+                                    <a class="btn btn-primary font-weight-bold w-100">
+                                        <i class="fas fa-cart-plus mr-2"></i>
+                                        {{ produit.prix }} €
+                                    </a>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                {% else %}
+                    <div class="col-12">
+                        <p>{% trans %}boutique.rayon.vide{% endtrans %}</p>
+                    </div>
+                {% endfor %}
+        </div>
+    </div>
 {% endblock %}
+
+
+
+
+

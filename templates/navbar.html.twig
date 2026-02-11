@@ -2,7 +2,7 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
 	<a class="navbar-brand" href="{{ path("app_default_index") }}">
 		<i class="fas fa-home"></i>
-		Accueil Boutique
+		{% trans %}navbar.accueil_boutique{% endtrans %}
 	</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
@@ -12,13 +12,13 @@
 			<li class="nav-item">
 				<a class="nav-link" href="{{ path("app_boutique_index") }}">
 					<i class="fas fa-store"></i>
-					Boutique
-				</a>
+                    {% trans %}navbar.boutique{% endtrans %}
+                </a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="{{ path("app_default_contact") }}">
 					<i class="fas fa-comments"></i>
-					Contact
+                    {% trans %}navbar.contact{% endtrans %}
 				</a>
 			</li>
 			{# TODO : ajouter au fil des TPs les autres éléments du menu #}
@@ -30,7 +30,31 @@
 		{# TODO #}
 		<!-- Fin menu des monnaies -->
 		<!-- Début menu des langues -->
-		{# TODO #}
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdownLangue" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {# Affiche la langue actuelle en majuscule #}
+                <i class="fas fa-language"></i>
+                {{ app.request.locale|upper }}
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownLangue">
+                {# 1. Récupération de la route et des paramètres actuels #}
+                {% set route = app.request.attributes.get('_route') %}
+                {% set route_params = app.request.attributes.get('_route_params') %}
+
+                {# 2. Boucle sur les langues (on utilise split pour transformer 'fr|en' en tableau) #}
+                {% for locale in supported_locales|split('|') %}
+
+                    {# On n'affiche le lien que si ce n'est pas la langue active #}
+                    {% if locale != app.request.locale %}
+                        {# 3. Création du lien avec fusion (merge) de la nouvelle locale #}
+                        <a class="dropdown-item" href="{{ path(route, route_params|merge({'_locale': locale})) }}">
+                            {{ locale|upper }}
+                        </a>
+                    {% endif %}
+
+                {% endfor %}
+            </div>
+        </li>
 		<!-- Fin Menu des langues -->
 	</div>
 </nav>

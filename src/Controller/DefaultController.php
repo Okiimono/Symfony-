@@ -13,8 +13,10 @@ use Symfony\Component\Routing\Attribute\Route;
 class DefaultController extends AbstractController
 {
     #[Route(
-        path: '', // L'URL auquel répondra cette action sera donc /
+        path: '/{_locale}', // L'URL auquel répondra cette action sera donc /
         name: 'app_default_index',
+        requirements: ['_locale' => 'fr|en'],
+        defaults: ['_locale' => 'fr']
     )]
     public function index(): Response
     {
@@ -31,8 +33,9 @@ class DefaultController extends AbstractController
     }
 
     #[Route(
-        path: 'test', // L'URL auquel répondra cette action sera donc /test
+        path: '/{_locale}/test', // L'URL auquel répondra cette action sera donc /test
         name: 'app_default_test',
+        requirements: ['_locale' => 'fr|en']
     )]
     public function test(): Response
     {
@@ -43,7 +46,7 @@ class DefaultController extends AbstractController
 
     // TODO : route et contrôleur de la page de contact
 
-    #[Route(path: 'contact', name: 'app_default_contact')]
+    #[Route(path: '/{_locale}/contact', name: 'app_default_contact', requirements: ['_locale' => 'fr|en'])]
     public function contact(): Response
     {
         return $this->render('default/contact.html.twig');
