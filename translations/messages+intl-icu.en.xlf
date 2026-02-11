@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="fr" target-language="en" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="Iw7uZUI" resname="navbar.accueil_boutique">
+        <source>navbar.accueil_boutique</source>
+        <target>Home</target>
+      </trans-unit>
+      <trans-unit id="kuhtb5p" resname="navbar.boutique">
+        <source>navbar.boutique</source>
+        <target>Shop</target>
+      </trans-unit>
+      <trans-unit id="nCSBDIb" resname="navbar.contact">
+        <source>navbar.contact</source>
+        <target>Contact</target>
+      </trans-unit>
+      <trans-unit id="SHq442S" resname="boutique.index.titre">
+        <source>boutique.index.titre</source>
+        <target>Shop</target>
+      </trans-unit>
+      <trans-unit id="QrQ1zFZ" resname="boutique.index.rayons_proposes">
+        <source>boutique.index.rayons_proposes</source>
+        <target>department(s) available</target>
+      </trans-unit>
+      <trans-unit id="q3Gm9mG" resname="boutique.rayon.titre">
+        <source>boutique.rayon.titre</source>
+        <target>Department</target>
+      </trans-unit>
+      <trans-unit id="9XvkrfQ" resname="boutique.rayon.vide">
+        <source>boutique.rayon.vide</source>
+        <target>Sorry, no products in this department yet!</target>
+      </trans-unit>
+      <trans-unit id="VRkZLT7" resname="boutique.rayon.retour">
+        <source>boutique.rayon.retour</source>
+        <target>Back to departments</target>
+      </trans-unit>
+      <trans-unit id="PRTARr6" resname="default.index.acceuil_boutique">
+        <source>default.index.acceuil_boutique</source>
+        <target>R4.01 Store</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
