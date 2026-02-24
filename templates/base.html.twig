@@ -55,7 +55,26 @@
             }
 		</script>
 		<!-- debut du block js spécifique -->
-		{% block js %}{%  endblock %}
+		{% block js %}
+            <script>
+                function lancerRecherche(event) {
+                    // Empêche le formulaire de recharger la page classiquement
+                    event.preventDefault();
+
+                    // 1. On récupère la valeur tapée dans le champ
+                    let saisie = document.getElementById('inputRecherche').value;
+
+                    // 2. On l'encode pour éviter les problèmes avec les caractères spéciaux dans l'URL [cite: 100, 101]
+                    let rechercheEncodee = encodeURIComponent(saisie);
+
+                    // 3. On forge l'URL de base avec Twig (ça donnera un truc genre /fr/boutique/chercher/)
+                    let urlBase = "{{ path('app_boutique_chercher') }}";
+
+                    // 4. On redirige vers l'URL complète
+                    window.location.href = urlBase + '/' + rechercheEncodee;
+                }
+            </script>
+        {%  endblock %}
 		<!-- fin du block js spécifique -->
 	</body>
 </html>
