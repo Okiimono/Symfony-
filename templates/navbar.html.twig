@@ -21,7 +21,16 @@
                     {% trans %}navbar.contact{% endtrans %}
 				</a>
 			</li>
-			{# TODO : ajouter au fil des TPs les autres éléments du menu #}
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path("app_panier_index") }}">
+                    <i class="fas fa-shopping-cart"></i>
+                    {% trans %}navbar.panier{% endtrans %}
+                    {% set nbProduits = render(controller('App\\Controller\\PanierController::nombreProduits')) | striptags | trim %}
+                    <span class="badge badge-pill {% if nbProduits == '0' %}badge-danger{% else %}badge-info{% endif %} shadow-sm">
+                        {{ nbProduits }}
+                    </span>
+                </a>
+            </li>
 		</ul>
 		<!-- Début champ de recherche -->
         <form class="form-inline my-2 my-lg-0" onsubmit="lancerRecherche(event);">

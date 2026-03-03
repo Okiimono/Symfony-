@@ -41,6 +41,22 @@
         <source>default.index.acceuil_boutique</source>
         <target>R4.01 Store</target>
       </trans-unit>
+      <trans-unit id="BCA2wZJ" resname="navbar.panier">
+        <source>navbar.panier</source>
+        <target>__navbar.panier</target>
+      </trans-unit>
+      <trans-unit id="Jqcz0eY" resname="chercher produit(s)...">
+        <source>chercher produit(s)...</source>
+        <target>__chercher produit(s)...</target>
+      </trans-unit>
+      <trans-unit id="reF8QYb" resname="contact.titre">
+        <source>contact.titre</source>
+        <target>__contact.titre</target>
+      </trans-unit>
+      <trans-unit id="une_cle_generee" resname="navbar.panier">
+          <source>navbar.panier</source>
+          <target>Item(s)</target>
+        </trans-unit>
     </body>
   </file>
 </xliff>
