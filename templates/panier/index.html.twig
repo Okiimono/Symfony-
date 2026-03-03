@@ -1,0 +1,105 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon Panier{% endblock %}
+
+{% block body %}
+    <div class="container mt-5 bg-white p-4 border rounded shadow-sm">
+
+        <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-3">
+            <a href="{{ path('app_boutique_index') }}" class="text-secondary text-decoration-none" title="Retour à la boutique">
+                <i class="fas fa-arrow-circle-left fa-2x"></i>
+            </a>
+
+            <h3 class="mb-0 text-center flex-grow-1 font-weight-bold text-dark">
+                <i class="fas fa-shopping-cart mr-1"></i>
+
+                {% set badgeClass = contenue is empty ? 'badge-danger' : 'badge-info' %}
+                <span class="badge badge-pill {{ badgeClass }} shadow-sm">
+                {{ render(controller('App\\Controller\\PanierController::nombreProduits')) }}
+            </span>
+
+                produit(s) - montant : {{ total|number_format(2, ',', ' ') }} €
+            </h3>
+
+            <div style="width: 32px;"></div> </div>
+
+        {% if contenue is empty %}
+            <div class="text-center my-5 py-5">
+                <h5 class="font-italic text-dark">
+                    Ton panier est vide !<br>
+                    Voudrais-tu briser notre petit coeur fragile de commerçant ?
+                </h5>
+                <a href="{{ path('app_boutique_index') }}" class="text-decoration-none">
+                    <i class="fas fa-heart-broken fa-3x mt-4" style="color: #e57373;"></i>
+                </a>
+            </div>
+
+        {% else %}
+            <div class="mb-4">
+                <button class="btn btn-primary btn-block py-2 font-weight-bold" style="background-color: #3b82f6; border: none;">
+                    Passer la commande
+                </button>
+            </div>
+
+            <table class="table table-hover text-center align-middle">
+                <thead class="bg-light border-bottom">
+                <tr>
+                    <th scope="col" class="border-top-0"></th>
+                    <th scope="col" class="border-top-0">Produit</th>
+                    <th scope="col" class="border-top-0">Prix</th>
+                    <th scope="col" class="border-top-0">Quantité</th>
+                    <th scope="col" class="border-top-0">Total</th>
+                    <th scope="col" class="border-top-0">Supprimer</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for element in contenue %}
+                    <tr>
+                        <td class="align-middle">
+                            <img src="{{ asset(element.produit.visuel) }}" alt="image" style="width: 50px; height: 50px; object-fit: contain;">
+                        </td>
+
+                        <td class="align-middle font-weight-bold text-primary">
+                            {{ element.produit.libelle }}
+                        </td>
+
+                        <td class="align-middle">{{ element.produit.prix|number_format(2, ',', ' ') }} €</td>
+
+                        <td class="align-middle text-secondary">
+                            <a href="{{ path('app_panier_enlever', {'idProduit': element.produit.id, 'quantite': 1}) }}" class="text-secondary text-decoration-none">
+                                <i class="fas fa-minus-square"></i>
+                            </a>
+
+                            <span class="mx-2 text-dark font-weight-bold">{{ element.quantite }}</span>
+
+                            <a href="{{ path('app_panier_ajouter', {'idProduit': element.produit.id, 'quantite': 1}) }}" class="text-secondary text-decoration-none">
+                                <i class="fas fa-plus-square"></i>
+                            </a>
+                        </td>
+
+                        <td class="align-middle text-dark">{{ (element.produit.prix * element.quantite)|number_format(2, ',', ' ') }} €</td>
+
+                        <td class="align-middle">
+                            <a href="{{ path('app_panier_supprimer', {'idProduit': element.produit.id}) }}" class="text-secondary">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+
+                <tfoot class="border-top">
+                <tr>
+                    <td colspan="4" class="text-right font-weight-bold align-middle text-dark">Total</td>
+                    <td class="font-weight-bold align-middle text-dark">{{ total|number_format(2, ',', ' ') }} €</td>
+                    <td class="align-middle">
+                        <a href="{{ path('app_panier_vider') }}" class="text-secondary" title="Vider tout">
+                            <i class="fas fa-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
+        {% endif %}
+    </div>
+{% endblock %}
