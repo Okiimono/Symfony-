@@ -56,4 +56,24 @@ final class PanierController extends AbstractController
         $nb = $panier->getNombreProduits();
         return new Response((string) $nb);
     }
+
+    #[Route('/commander', name: 'app_panier_commander')]
+    public function commander(PanierService $panier, UsagerRepository $usagerRepository): Response
+    {
+        $usager = $usagerRepository->find(1);
+        if (!$usager) {
+            return $this->redirectToRoute('app_usager_new');
+        }
+
+        $commande = $panier->panierToCommande($usager);
+
+        if (!$commande) {
+            return $this->redirectToRoute('app_panier_index');
+        }
+
+        return $this->render('panier/commande.html.twig', [
+            'commande' => $commande,
+            'usager' => $usager,
+        ]);
+    }
 }

@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Acceuil Usager{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1>Mon Espace Client</h1>
+
+        {% if usagers %}
+            <div class="alert alert-success">
+                <p>Bonjour {{ usagers.prenom }} {{ usagers.nom }}</p>
+            </div>
+        {% else %}
+            <div class="alert alert-warning">
+                <p>Aucun utilisateur trouvé</p>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

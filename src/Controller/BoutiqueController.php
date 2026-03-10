@@ -28,7 +28,7 @@ final class BoutiqueController extends AbstractController
     {
         $categorie = $categorieRepository->find($idCategorie);
 
-        $produits = $categorieRepository->findBy(['categorie' =>$categorie]);
+        $produits = $produitRepository->findBy(['categorie' =>$categorie]);
 
         return $this->render('boutique/rayon.html.twig', [
             'produits' => $produits,

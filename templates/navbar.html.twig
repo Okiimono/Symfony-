@@ -31,7 +31,19 @@
                     </span>
                 </a>
             </li>
+            <!-- Début champ utilisateur -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdownUsager" data-toggle="dropdown">
+                    <i class="fas fa-user"></i>Usager
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownUsager">
+                    <a class="dropdown-item" href="{{ path('app_usager_new') }}">Inscription</a>
+                    <a class="dropdown-item" href="{{ path('app_usager_index') }}"> Acceuil Usager</a>
+                </div>
+            </li>
+            <!-- Fin champ utilisateur -->
 		</ul>
+
 		<!-- Début champ de recherche -->
         <form class="form-inline my-2 my-lg-0" onsubmit="lancerRecherche(event);">
             <input class="form-control mr-sm-2" type="search" id="inputRecherche" placeholder="{% trans %}chercher produit(s)...{% endtrans %}" aria-label="Search">
