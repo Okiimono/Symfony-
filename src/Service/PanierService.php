@@ -1,6 +1,7 @@
 <?php
 namespace App\Service;
 
+use App\Repository\ProduitRepository;
 use Symfony\Component\HttpFoundation\RequestStack;
 use App\Service\BoutiqueService;
 
@@ -9,16 +10,16 @@ class PanierService
 {
     ////////////////////////////////////////////////////////////////////////////
     private $session;   // Le service session
-    private $boutique;  // Le service boutique
+    private $produitRepository;  // Le service boutique
     private $panier;    // Tableau associatif, la clé est un idProduit, la valeur associée est une quantité
                         //   donc $this->panier[$idProduit] = quantité du produit dont l'id = $idProduit
     const PANIER_SESSION = 'panier'; // Le nom de la variable de session pour faire persister $this->panier
 
     // Constructeur du service
-    public function __construct(RequestStack $requestStack, BoutiqueService $boutique)
+    public function __construct(RequestStack $requestStack, ProduitRepository $produitRepository)
     {
         // Récupération des services session et BoutiqueService
-        $this->boutique = $boutique;
+        $this->produitRepository = $produitRepository;
         $this->session = $requestStack->getSession();
         // Récupération du panier en session s'il existe, init. à vide sinon
         $this->panier = $this->session->get(self::PANIER_SESSION, []);
@@ -29,9 +30,9 @@ class PanierService
     {
         $total = 0;
         foreach ($this->panier as $idProduit => $quantite) {
-            $produit = $this->boutique->findProduitById($idProduit);
+            $produit = $this->produitRepository->find($idProduit);
             if ($produit != null) {
-                $total += ($produit->prix * $quantite);
+                $total += ($produit->getPrix() * $quantite);
             }
         }
         return $total;
@@ -91,7 +92,7 @@ class PanierService
       $contenu = [];
 
       foreach ($this->panier as $idProduit => $quantite) {
-          $produit = $this->boutique->findProduitById($idProduit);
+          $produit = $this->produitRepository->find($idProduit);
           if ($produit != null) {
               $contenu[] = [
                   "produit" => $produit,

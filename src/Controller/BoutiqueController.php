@@ -2,7 +2,10 @@
 
 namespace App\Controller;
 
+use App\Repository\CategorieRepository;
+use App\Repository\ProduitRepository;
 use App\Service\BoutiqueService;
+use http\Env\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -11,9 +14,9 @@ use Symfony\Component\Routing\Attribute\Route;
 final class BoutiqueController extends AbstractController
 {
     #[Route('', name: 'app_boutique_index')]
-    public function index(BoutiqueService $boutique): Response
+    public function index(CategorieRepository $categorieRepository): Response
     {
-        $lesCategories = $boutique->findAllCategories();
+        $lesCategories = $categorieRepository->findAll();
 
         return $this->render('boutique/index.html.twig', [
             'categories' => $lesCategories,
@@ -21,11 +24,11 @@ final class BoutiqueController extends AbstractController
     }
 
     #[Route('/rayon/{idCategorie}', name: 'app_boutique_rayon')]
-    public function rayon(BoutiqueService $boutique, int $idCategorie): Response
+    public function rayon(CategorieRepository $categorieRepository, int $idCategorie, ProduitRepository $produitRepository): Response
     {
-        $produits = $boutique->findProduitsByCategorie($idCategorie);
+        $categorie = $categorieRepository->find($idCategorie);
 
-        $categorie = $boutique->findCategorieById($idCategorie);
+        $produits = $categorieRepository->findBy(['categorie' =>$categorie]);
 
         return $this->render('boutique/rayon.html.twig', [
             'produits' => $produits,
@@ -34,11 +37,16 @@ final class BoutiqueController extends AbstractController
     }
 
     #[Route('/chercher/{recherche}', name: 'app_boutique_chercher', requirements: ['recherche' => '.+'], defaults: ['recherche' => ''])]
-    public function chercher(BoutiqueService $boutique, string $recherche): Response
+    public function chercher(ProduitRepository $produitRepository, string $recherche, Request $request): Response
     {
-    $articles = $boutique->findProduitsByLibelleOrTexte($recherche);
+        if ($recherche === '') {
+            $produits = [];
+        } else {
+            $produits = $produitRepository->findByLibelleOrTexte($recherche);
+        }
+
     return $this->render('boutique/chercher.html.twig', [
-        'articles' => $articles,
+        'articles' => $produits,
         'recherche' => $recherche
     ]);
     }
