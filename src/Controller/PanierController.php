@@ -70,7 +70,7 @@ final class PanierController extends AbstractController
         if (!$commande) {
             return $this->redirectToRoute('app_panier_index');
         }
-
+        // Affiche la page
         return $this->render('panier/commande.html.twig', [
             'commande' => $commande,
             'usager' => $usager,
